@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using FilmesAPI.Models;
 using FilmesAPI.Data;
 using FilmesAPI.Services;
-using FilmesAPI.Data.DTOS;
 using AutoMapper;
+using FilmesAPI.Data.DTOS.Filme;
 
 namespace FilmesAPI.Controllers
 {
@@ -14,7 +14,7 @@ namespace FilmesAPI.Controllers
     {
         private readonly FilmeService _filmeService;        
 
-        public FilmeController(FilmeContext context, IMapper mapper)
+        public FilmeController(APIContext context, IMapper mapper)
         {
             _filmeService = new FilmeService(context, mapper);
         }

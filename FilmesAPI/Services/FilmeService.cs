@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FilmesAPI.Data;
-using FilmesAPI.Data.DTOS;
+using FilmesAPI.Data.DTOS.Filme;
 using FilmesAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ namespace FilmesAPI.Services
 {
     public class FilmeService
     {
-        private readonly FilmeContext _context;
+        private readonly APIContext _context;
         private readonly IMapper _mapper;            
 
-        public FilmeService(FilmeContext context)
+        public FilmeService(APIContext context)
         {
             _context = context;
         }
 
-        public FilmeService(FilmeContext context, IMapper mapper) : this(context)
+        public FilmeService(APIContext context, IMapper mapper) : this(context)
         {
             _mapper = mapper;
         }
