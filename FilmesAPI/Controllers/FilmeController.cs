@@ -4,7 +4,7 @@ using FilmesAPI.Models;
 using FilmesAPI.Data;
 using FilmesAPI.Services;
 using AutoMapper;
-using FilmesAPI.Data.DTOS.Filme;
+using FilmesAPI.Data.DTOS;
 
 namespace FilmesAPI.Controllers
 {

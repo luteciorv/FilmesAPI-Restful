@@ -1,7 +1,8 @@
-﻿using System;
+﻿using FilmesAPI.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace FilmesAPI.Data.DTOS.Cinema
+namespace FilmesAPI.Data.DTOS
 {
     public class LerCinemaDTO
     {
@@ -11,6 +12,8 @@ namespace FilmesAPI.Data.DTOS.Cinema
 
         [Required(ErrorMessage = "O campo Nome é obrigatório")]
         public string Nome { get; set; }
+
+        public Endereco Endereco { get; set; }
 
         public DateTime HoraConsulta
         {

@@ -10,5 +10,9 @@ namespace FilmesAPI.Models
 
         [Required(ErrorMessage = "O campo Nome é obrigatório")]
         public string Nome { get; set; }
+
+         
+        public int EnderecoID { get; set; }        
+        public virtual Endereco Endereco { get; set; }
     }
 }
