@@ -48,7 +48,8 @@ namespace FilmesAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(cinema);
+            var cinemaDTO = _mapper.Map<LerCinemaDTO>(cinema);
+            return Ok(cinemaDTO);
         }
 
 

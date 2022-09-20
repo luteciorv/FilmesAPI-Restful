@@ -17,11 +17,17 @@ namespace FilmesAPI.Data
                 .HasOne(E => E.Cinema)
                 .WithOne(C => C.Endereco)
                 .HasForeignKey<Cinema>(C => C.EnderecoID);
+
+            builder.Entity<Cinema>()
+                .HasOne(C => C.Gerente)
+                .WithMany(G => G.Cinemas)
+                .HasForeignKey(C => C.GerenteID);
         }
 
 
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
+        public DbSet<Gerente> Gerentes { get; set; }
     }
 }

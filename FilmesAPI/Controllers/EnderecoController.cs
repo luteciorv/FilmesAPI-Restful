@@ -48,7 +48,8 @@ namespace FilmesAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(endereco);
+            var enderecoDTO = _mapper.Map<LerEnderecoDTO>(endereco);
+            return Ok(enderecoDTO);
         }
 
 

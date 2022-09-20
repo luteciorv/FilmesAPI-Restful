@@ -3,14 +3,16 @@ using FilmesAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FilmesAPI.Migrations
 {
     [DbContext(typeof(APIContext))]
-    partial class FilmeContextModelSnapshot : ModelSnapshot
+    [Migration("20220919115012_Tabela de Gerentes e Relação entre Gerentes e Cinemas")]
+    partial class TabeladeGerenteseRelaçãoentreGerenteseCinemas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
