@@ -12,17 +12,24 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Alta delegação de responsabilidades;
 > * Entidades Filme, Endereço, Gerente e Cinema;
 
-### Alterações Feitas (v01.01)
+### Alterações Feitas
+### (v01.01)
 > * O EF Core é um framework para gerar entidades e relacionamentos;
 > * O conceito de relacionamentos;
 
-### Alterações Feitas (v01.02)
+### (v01.02)
 > * Relacionamento 1:1;
 > * ModelBuilder para explicitar como o relacionamento será estabelecido.
 > * Lazy Properties (Carregar informações de uma entidade que é propriedade de outra);
 
-### Alterações Feitas (v01.03)
+### (v01.03)
 > * Relacionamento 1:n;
 > * Problemas de loops de informações (JsonIgnore e AutoMapper);
 > * Modos de deleção (Restrito ou em Cascata);
 > * Tornar um atributo de chave estrangeira opcional;
+
+### (v01.04)
+> * Relacionamento n para n;
+> * Gerar um relacionamento de n para n com o Entity;
+> * Criação de um modelo para representar o relacionamento;
+> * Utilização do AutoMapper para calcular informações a partir de entidades diferentes em tempo de execução;

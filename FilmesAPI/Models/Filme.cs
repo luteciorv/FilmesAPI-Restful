@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.Json.Serialization;
 
 namespace FilmesAPI.Models
 {
@@ -19,6 +22,9 @@ namespace FilmesAPI.Models
         public string Genero { get; set; }
         
         [Range(1, 200, ErrorMessage = "A duração deve estar entre 1 e 200 minutos")]
-        public int DuracaoEmMinutos { get; set; }      
+        public int DuracaoEmMinutos { get; set; }
+
+        [JsonIgnore]
+        public virtual List<Sessao> Sessoes { get; set; }
     }
 }
