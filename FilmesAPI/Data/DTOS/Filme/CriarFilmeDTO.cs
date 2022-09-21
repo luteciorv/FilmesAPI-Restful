@@ -15,5 +15,8 @@ namespace FilmesAPI.Data.DTOS
 
         [Range(1, 200, ErrorMessage = "A duração deve estar entre 1 e 200 minutos")]
         public int DuracaoEmMinutos { get; set; }
+
+        [Range(0, 100, ErrorMessage = "A classificação etário deve estar entre 0 e 100")]
+        public int ClassificacaoEtaria { get; set; }
     }
 }

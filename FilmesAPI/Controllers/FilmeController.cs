@@ -5,6 +5,7 @@ using FilmesAPI.Data;
 using FilmesAPI.Services;
 using AutoMapper;
 using FilmesAPI.Data.DTOS;
+using System.Linq;
 
 namespace FilmesAPI.Controllers
 {
@@ -12,10 +13,14 @@ namespace FilmesAPI.Controllers
     [Route("[controller]")]
     public class FilmeController : ControllerBase
     {
+        private readonly APIContext _context;
+        private readonly IMapper _mapper;
         private readonly FilmeService _filmeService;        
 
         public FilmeController(APIContext context, IMapper mapper)
         {
+            _context = context;
+            _mapper = mapper;
             _filmeService = new FilmeService(context, mapper);
         }
 
@@ -32,9 +37,26 @@ namespace FilmesAPI.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Filme> RecuperarFilmes()
+        public IActionResult RecuperarFilmes([FromQuery] int? classificacaoEtaria = null)
         {
-            return _filmeService.RecuperarFilmes();
+            List<Filme> filmes;
+            if(classificacaoEtaria == null)
+            {
+                filmes = _filmeService.RecuperarFilmes().ToList();
+            }
+            else
+            {
+                filmes = _context.Filmes.Where(F => F.ClassificacaoEtaria <= classificacaoEtaria).ToList();
+            }
+
+            if(filmes == null)
+            {
+                return NotFound();
+            }
+
+            var filmesDTO = _mapper.Map<List<LerFilmeDTO>>(filmes);
+
+            return Ok(filmesDTO);
         }
 
         [HttpGet("{id}")]

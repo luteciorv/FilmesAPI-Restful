@@ -33,3 +33,8 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Gerar um relacionamento de n para n com o Entity;
 > * Criação de um modelo para representar o relacionamento;
 > * Utilização do AutoMapper para calcular informações a partir de entidades diferentes em tempo de execução;
+
+### (v01.05)
+> * Envio e recuperação de parâmetros pela URL;    
+> * Consultas através do encadeamento de métodos;
+> * Consultas em LINQ.
