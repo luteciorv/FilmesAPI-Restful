@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using FilmesAPI.Models;
-using FilmesAPI.Data;
 using FilmesAPI.Services;
-using AutoMapper;
 using FilmesAPI.Data.DTOS;
-using System.Linq;
 
 namespace FilmesAPI.Controllers
 {
@@ -13,79 +8,53 @@ namespace FilmesAPI.Controllers
     [Route("[controller]")]
     public class FilmeController : ControllerBase
     {
-        private readonly APIContext _context;
-        private readonly IMapper _mapper;
         private readonly FilmeService _filmeService;        
 
-        public FilmeController(APIContext context, IMapper mapper)
+        public FilmeController(FilmeService filmeService)
         {
-            _context = context;
-            _mapper = mapper;
-            _filmeService = new FilmeService(context, mapper);
+            _filmeService = filmeService;
         }
 
 
         [HttpPost]
         public IActionResult AdicionarFilme([FromBody] CriarFilmeDTO filmeDTO)
         {
-            _filmeService.AdicionarFilme(filmeDTO);
-
-            var filme = _filmeService.RecuperarUltimoFilmeAdicionado();
-
-            return CreatedAtAction(nameof(RecuperarFilmePeloID), new { filme.ID }, filme);
+            var lerFilmeDTO = _filmeService.AdicionarFilme(filmeDTO);
+           
+            return CreatedAtAction(nameof(RecuperarFilmePeloID), new { lerFilmeDTO.ID }, lerFilmeDTO);
         }
 
 
         [HttpGet]
         public IActionResult RecuperarFilmes([FromQuery] int? classificacaoEtaria = null)
         {
-            List<Filme> filmes;
-            if(classificacaoEtaria == null)
-            {
-                filmes = _filmeService.RecuperarFilmes().ToList();
-            }
-            else
-            {
-                filmes = _context.Filmes.Where(F => F.ClassificacaoEtaria <= classificacaoEtaria).ToList();
-            }
+            var lerfilmesDTO = _filmeService.RecuperarFilmes(classificacaoEtaria);
 
-            if(filmes == null)
-            {
-                return NotFound();
-            }
-
-            var filmesDTO = _mapper.Map<List<LerFilmeDTO>>(filmes);
-
-            return Ok(filmesDTO);
+            if (lerfilmesDTO == null)
+            { NotFound(); }
+            
+            return Ok(lerfilmesDTO);
         }
 
         [HttpGet("{id}")]
         public IActionResult RecuperarFilmePeloID(int id)
         {
-            var filme = _filmeService.RecuperarFilmePeloID(id);
+            var lerFilmeDTO = _filmeService.RecuperarFilmePeloID(id);
 
-            if (filme != null) 
-            {
-                var filmeDTO = _filmeService.RecuperarLerFilmeDTO(filme);
-                
-                return Ok(filmeDTO); 
-            }
+            if(lerFilmeDTO == null)
+            { NotFound(); }
 
-            return NotFound();
+            return Ok(lerFilmeDTO);           
         }
 
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarFilmePeloID(int id, [FromBody] AtualizarFilmeDTO filmeDTO)
-        {
-            var filme = _filmeService.RecuperarFilmePeloID(id);
+        public IActionResult AtualizarFilme(int id, [FromBody] AtualizarFilmeDTO atualizarFilmeDTO)
+        {           
+            var resultado = _filmeService.AtualizarFilme(id, atualizarFilmeDTO);            
 
-            if (filme == null)
-            {
-                return NotFound();
-            }
-
-            _filmeService.AtualizarFilme(filmeDTO, filme);            
+            if(resultado.IsFailed)
+            { NotFound(); }
 
             return NoContent();
         }
@@ -94,15 +63,12 @@ namespace FilmesAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult ApagarFilmePeloID(int id)
         {
-            var filme = _filmeService.RecuperarFilmePeloID(id);
+            var resultado = _filmeService.ApagarFilme(id);
 
-            if (filme == null)
-            {
-                return NotFound();
-            }
-
-            _filmeService.ApagarFilme(filme);
-            return Ok();
+            if (resultado.IsFailed)
+            { return NotFound(); }
+            
+            return NoContent();
         }
     }
 }

@@ -38,3 +38,9 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Envio e recuperação de parâmetros pela URL;    
 > * Consultas através do encadeamento de métodos;
 > * Consultas em LINQ.
+
+### (v01.06)
+> * Delegação de responsabilidades. Controlador x Service;
+  * Refatoração;
+  * Criação de Services para cada controller;
+  * Retorno de métodos objetivos;

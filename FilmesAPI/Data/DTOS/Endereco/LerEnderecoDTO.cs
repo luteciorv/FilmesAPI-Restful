@@ -4,6 +4,8 @@ namespace FilmesAPI.Data.DTOS
 {
     public class LerEnderecoDTO
     {
+        public int ID { get; set; }
+
         public string Bairro { get; set; }
 
         public string Logradouro { get; set; }
