@@ -41,6 +41,11 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 
 ### (v01.06)
 > * Delegação de responsabilidades. Controlador x Service;
-  * Refatoração;
-  * Criação de Services para cada controller;
-  * Retorno de métodos objetivos;
+> * Refatoração;
+> * Criação de Services para cada controller;
+> * Retorno de métodos objetivos;
+
+### (v01.07)
+> * Identity (CRUD de usuários);
+> * Integração do Identity com o Entity;
+> * Configuração do Identity;
