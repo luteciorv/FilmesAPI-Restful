@@ -49,3 +49,8 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Identity (CRUD de usuários);
 > * Integração do Identity com o Entity;
 > * Configuração do Identity;
+
+### (v01.08)
+> * SignInManager para login e logout do usuário;
+> * Criação e personalização de Tokens;    
+> * Trafegar informações no FluentResults;
