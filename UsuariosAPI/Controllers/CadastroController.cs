@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 using UsuariosAPI.Data.DTO;
+using UsuariosAPI.Data.Requests;
 using UsuariosAPI.Services;
 
 namespace UsuariosAPI.Controllers
@@ -23,7 +25,17 @@ namespace UsuariosAPI.Controllers
             if(resultado.IsFailed)
             { return StatusCode(500); }
 
-            return Ok();
+            return Ok(resultado.Successes);
+        }
+
+        [HttpPost("/Ativar")]
+        public IActionResult AtivarContaUsuario(AtivarContaRequest requisicao)
+        {
+            Result resultado = _cadastroService.AtivarContaUsuario(requisicao);
+            if(resultado.IsFailed)
+            { return StatusCode(500); }
+
+            return Ok(resultado.Successes);
         }
     }
 }

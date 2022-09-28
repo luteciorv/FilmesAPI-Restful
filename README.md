@@ -54,3 +54,9 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * SignInManager para login e logout do usuário;
 > * Criação e personalização de Tokens;    
 > * Trafegar informações no FluentResults;
+
+### (v01.09)
+> * Bloqueio do login sem contas confirmadas através do Identity;
+> * Código de ativação ao cadastrar a conta;
+> * Fluxo para confirmar a conta de um usuário;
+> * Tráfego de informações pelo Fluent.Results;

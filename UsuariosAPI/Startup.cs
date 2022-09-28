@@ -32,8 +32,11 @@ namespace UsuariosAPI
         {
             services.AddDbContext<UsuarioContext>(O =>
                 O.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-                    .AddEntityFrameworkStores<UsuarioContext>();
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+                O => O.SignIn.RequireConfirmedEmail = true
+                )
+                .AddEntityFrameworkStores<UsuarioContext>()
+                .AddDefaultTokenProviders();
 
             services.AddScoped<CadastroService, CadastroService>();
             services.AddScoped<TokenService, TokenService>();
