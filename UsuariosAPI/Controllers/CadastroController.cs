@@ -28,8 +28,8 @@ namespace UsuariosAPI.Controllers
             return Ok(resultado.Successes);
         }
 
-        [HttpPost("/Ativar")]
-        public IActionResult AtivarContaUsuario(AtivarContaRequest requisicao)
+        [HttpGet("/Ativar")]
+        public IActionResult AtivarContaUsuario([FromQuery] AtivarContaRequest requisicao)
         {
             Result resultado = _cadastroService.AtivarContaUsuario(requisicao);
             if(resultado.IsFailed)

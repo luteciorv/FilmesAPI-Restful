@@ -60,3 +60,10 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Código de ativação ao cadastrar a conta;
 > * Fluxo para confirmar a conta de um usuário;
 > * Tráfego de informações pelo Fluent.Results;
+
+### (v01.10)
+> * Envio de e-mails para os usuários através do .NET;
+> * Abrir conexão com o servidor de e-mails através do MailKit;
+> * Geração de uma mensagem de e-mail através do MimeKit;
+> * Carregar informações de configuração através da interface IConfiguration;
+> * Link de ativação da conta enviada por e-mail;
