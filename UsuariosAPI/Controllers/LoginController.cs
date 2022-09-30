@@ -26,5 +26,28 @@ namespace UsuariosAPI.Controllers
 
             return Ok(resultado.Successes);
         }
+
+
+        [HttpPost("/SolicitarRedefinicaoSenha")]
+        public IActionResult SolicitarRedefinicaoSenhaUsuario(SolicitarRedefinicaoRequest requisicao)
+        {
+            Result resultado = _loginService.SolicitarRedefinicaoSenhaUsuario(requisicao);
+
+            if(resultado.IsFailed)
+            { return Unauthorized(resultado.Errors); }
+
+            return Ok(resultado.Successes);
+        }
+
+        [HttpPost("/RedefinirSenha")]
+        public IActionResult RedefinirSenhaUsuario(RedefinirRequest requisicao)
+        {
+            Result resultado = _loginService.RedefinirSenhaUsuario(requisicao);
+
+            if (resultado.IsFailed)
+            { return Unauthorized(resultado.Errors); }
+
+            return Ok(resultado.Successes);
+        }
     }
 }

@@ -67,3 +67,8 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Geração de uma mensagem de e-mail através do MimeKit;
 > * Carregar informações de configuração através da interface IConfiguration;
 > * Link de ativação da conta enviada por e-mail;
+
+### (V01.11)
+> * Redefinição de senhas de usuário;
+> * Utilização do Identity para solicitar a alteração da senha;
+> * Utilização do Identity para efetivamente alterar a senha;
