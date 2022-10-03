@@ -68,7 +68,13 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 > * Carregar informações de configuração através da interface IConfiguration;
 > * Link de ativação da conta enviada por e-mail;
 
-### (V01.11)
+### (v01.11)
 > * Redefinição de senhas de usuário;
 > * Utilização do Identity para solicitar a alteração da senha;
 > * Utilização do Identity para efetivamente alterar a senha;
+
+### (v01.12)
+	* Criação do cargo "Admin";
+	* Geração de cargos;
+	* Vincular Cargos aos usuários criados;
+	* Interpretação do Token para extrair o Cargo dele;

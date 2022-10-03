@@ -15,27 +15,32 @@ namespace UsuariosAPI.Services
         private readonly UserManager<IdentityUser<int>> _userManager;
         private readonly EmailService _emailService;
         private readonly IMapper _mapper;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
 
-        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, EmailService emailService)
+        public CadastroService(IMapper mapper, UserManager<IdentityUser<int>> userManager, EmailService emailService, RoleManager<IdentityRole<int>> roleManager)
         {
             _mapper = mapper;
             _userManager = userManager;
             _emailService = emailService;
+            _roleManager = roleManager;
         }
 
 
         public Result CriarUsuario(CriarUsuarioDTO criarDTO)
         {
             var usuario = _mapper.Map<Usuario>(criarDTO);
-            var usuarioIdentiy = _mapper.Map<IdentityUser<int>>(usuario);
+            var usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario);
+            var resultadoIdentity = _userManager.CreateAsync(usuarioIdentity, criarDTO.Senha).Result;
 
-            var resultadoIdentity = _userManager.CreateAsync(usuarioIdentiy, criarDTO.Senha);
-            if(resultadoIdentity.Result.Succeeded)
+            var resultadoCriarCargo = _roleManager.CreateAsync(new IdentityRole<int>("Admin")).Result;
+            var resultadoAssociarCargo = _userManager.AddToRoleAsync(usuarioIdentity, "Admin").Result;
+
+            if(resultadoIdentity.Succeeded)
             {
-                var codigoAtivacao = _userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentiy).Result;
+                var codigoAtivacao = _userManager.GenerateEmailConfirmationTokenAsync(usuarioIdentity).Result;
                 var encodedCodigoAtivacao = HttpUtility.UrlEncode(codigoAtivacao);
                 
-                _emailService.EnviarEmail(new[] {usuarioIdentiy.Email}, "Link de ativação do e-mail", usuarioIdentiy.Id, encodedCodigoAtivacao);
+                _emailService.EnviarEmail(new[] {usuarioIdentity.Email}, "Link de ativação do e-mail", usuarioIdentity.Id, encodedCodigoAtivacao);
                 return Result.Ok().WithSuccess(codigoAtivacao); 
             }
 

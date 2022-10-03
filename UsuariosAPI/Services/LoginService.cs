@@ -31,7 +31,9 @@ namespace UsuariosAPI.Services
                                         .Users
                                         .FirstOrDefault(U => U.NormalizedUserName == requisicao.Usuario.ToUpper());
 
-                Token token = _tokenService.CriarToken(identityUsuario);
+                string cargo = _signInManager.UserManager.GetRolesAsync(identityUsuario).Result.FirstOrDefault();
+                Token token = _tokenService.CriarToken(identityUsuario, cargo);
+                
                 return Result.Ok().WithSuccess(token.Valor);
             }
 
