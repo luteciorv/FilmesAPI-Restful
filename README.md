@@ -78,3 +78,8 @@ Curso Alura - Projeto em ASPNET Core 5.0 utilizando API com arquitetura RESTUFUL
 	* Geração de cargos;
 	* Vincular Cargos aos usuários criados;
 	* Interpretação do Token para extrair o Cargo dele;
+
+### (v01.13)
+	* Criação de mais cargos;
+	* Criação dos cargos na inicialização do Banco de dados;
+	* Criar e vincular o cargo "regular" aos usuários novos;

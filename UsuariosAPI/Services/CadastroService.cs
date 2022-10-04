@@ -32,8 +32,7 @@ namespace UsuariosAPI.Services
             var usuarioIdentity = _mapper.Map<IdentityUser<int>>(usuario);
             var resultadoIdentity = _userManager.CreateAsync(usuarioIdentity, criarDTO.Senha).Result;
 
-            var resultadoCriarCargo = _roleManager.CreateAsync(new IdentityRole<int>("Admin")).Result;
-            var resultadoAssociarCargo = _userManager.AddToRoleAsync(usuarioIdentity, "Admin").Result;
+            _userManager.AddToRoleAsync(usuarioIdentity, "regular");
 
             if(resultadoIdentity.Succeeded)
             {

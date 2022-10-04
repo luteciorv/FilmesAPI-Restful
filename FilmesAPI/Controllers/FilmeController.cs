@@ -19,7 +19,7 @@ namespace FilmesAPI.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "admin")]
         public IActionResult AdicionarFilme([FromBody] CriarFilmeDTO filmeDTO)
         {
             var lerFilmeDTO = _filmeService.AdicionarFilme(filmeDTO);
@@ -29,6 +29,7 @@ namespace FilmesAPI.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "admin, regular")]
         public IActionResult RecuperarFilmes([FromQuery] int? classificacaoEtaria = null)
         {
             var lerfilmesDTO = _filmeService.RecuperarFilmes(classificacaoEtaria);
