@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using UsuariosAPI.Models;
 
 namespace UsuariosAPI.Data
 {
-    public class UsuarioContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
+    public class UsuarioContext : IdentityDbContext<IdentityUserCustomizado, IdentityRole<int>, int>
     {
         private readonly IConfiguration _configuration;
 
@@ -19,7 +20,7 @@ namespace UsuariosAPI.Data
         {
             base.OnModelCreating(builder);
 
-            IdentityUser<int> admin = new IdentityUser<int>
+            IdentityUserCustomizado admin = new IdentityUserCustomizado
             {
                 UserName = "admin",
                 NormalizedUserName = "ADMIN",
@@ -30,10 +31,10 @@ namespace UsuariosAPI.Data
                 Id = 99999
             };
 
-            PasswordHasher<IdentityUser<int>> hasher = new PasswordHasher<IdentityUser<int>>();
+            PasswordHasher<IdentityUserCustomizado> hasher = new PasswordHasher<IdentityUserCustomizado>();
             admin.PasswordHash = hasher.HashPassword(admin, _configuration.GetValue<string>("AdminInfo:Senha"));
 
-            builder.Entity<IdentityUser<int>>().HasData(admin);
+            builder.Entity<IdentityUserCustomizado>().HasData(admin);
 
             builder.Entity<IdentityRole<int>>().HasData(
                 new IdentityRole<int> { Id = 99999, Name = "admin", NormalizedName = "ADMIN" }

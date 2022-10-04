@@ -10,10 +10,10 @@ namespace UsuariosAPI.Services
 {
     public class LoginService
     {
-        private readonly SignInManager<IdentityUser<int>> _signInManager;
+        private readonly SignInManager<IdentityUserCustomizado> _signInManager;
         private readonly TokenService _tokenService;
 
-        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService)
+        public LoginService(SignInManager<IdentityUserCustomizado> signInManager, TokenService tokenService)
         {
             _signInManager = signInManager;
             _tokenService = tokenService;
@@ -43,7 +43,7 @@ namespace UsuariosAPI.Services
 
         public Result SolicitarRedefinicaoSenhaUsuario(SolicitarRedefinicaoRequest requisicao)
         {
-            IdentityUser<int> usuarioIdentity = RecuperarUsuarioPeloEmail(requisicao.Email);
+            IdentityUserCustomizado usuarioIdentity = RecuperarUsuarioPeloEmail(requisicao.Email);
 
             if (usuarioIdentity == null)
             {
@@ -56,7 +56,7 @@ namespace UsuariosAPI.Services
 
         public Result RedefinirSenhaUsuario(RedefinirRequest requisicao)
         {
-            IdentityUser<int> usuarioIdentity = RecuperarUsuarioPeloEmail(requisicao.Email);
+            IdentityUserCustomizado usuarioIdentity = RecuperarUsuarioPeloEmail(requisicao.Email);
 
             if (usuarioIdentity == null)
             {
@@ -77,7 +77,7 @@ namespace UsuariosAPI.Services
         }
 
 
-        private IdentityUser<int> RecuperarUsuarioPeloEmail(string email)
+        private IdentityUserCustomizado RecuperarUsuarioPeloEmail(string email)
         {
             return _signInManager
                     .UserManager
